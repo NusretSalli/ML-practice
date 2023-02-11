@@ -47,11 +47,22 @@ def pca_variance_plotter(data, threshold: float):
 
 
 
-def pca_point_plotter3d(standard_data,
+def pca_point_plotter3d(pca_data,
                     class_data,
-                    index_list,
+                    pc_list,
                     class_names):
     
+    """
+    
+    Inputs:
+
+    pca_data -> The transformed data by doing a SVD
+    class_data -> The vector, that contain each entries' class
+    pc_list -> list of the pc numbers that will be plotted.
+    class_names -> the name of the classes
+    
+    """
+
     plt.figure(figsize = (16, 9)) # maybe f2 = plt.figure(....)
 
     C = len(class_names) # number of classes we have.
@@ -64,15 +75,15 @@ def pca_point_plotter3d(standard_data,
         
         class_mask = class_data == c
 
-        ax.scatter3D(standard_data.iloc[class_mask,index_list[0]],
-                    standard_data.iloc[class_mask,index_list[1]],
-                    standard_data.iloc[class_mask,index_list[2]])
+        ax.scatter3D(pca_data.iloc[class_mask,pc_list[0]], # plotting the first index in x-axis
+                    pca_data.iloc[class_mask,pc_list[1]], # plotting the second index in y-axis
+                    pca_data.iloc[class_mask,pc_list[2]]) # plotting the third index in z-axis
     
     plt.legend(class_names)
 
-    ax.set_xlabel('PC{0}'.format(index_list[0]+1))
-    ax.set_ylabel('PC{0}'.format(index_list[1]+1))
-    ax.set_zlabel('PC{0}'.format(index_list[2]+1))
+    ax.set_xlabel('PC{0}'.format(pc_list[0]+1))
+    ax.set_ylabel('PC{0}'.format(pc_list[1]+1))
+    ax.set_zlabel('PC{0}'.format(pc_list[2]+1))
 
     plt.show()
 
