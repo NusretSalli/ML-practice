@@ -7,7 +7,22 @@ import matplotlib.pyplot as plt
 
 
 def plot_decision_boundary(model: torch.nn.Module, X: torch.Tensor, y: torch.Tensor):
-    """Plots decision boundaries of model predicting on X in comparison to y.
+    """
+    Plots decision boundaries of model predicting on X in comparison to y.
+
+    Inputs:
+
+    Model -> a torch.nn.Module whose boundary decision you want to visualize
+
+    X -> the feature dataset (torch.tensor), which includes all the features' values for each entry
+
+    Y -> the class label vector (torch.Tensor), which tells the true class the entry belongs to.
+
+    Output:
+
+    Plot that shows the decision boundary for the model.
+
+
     """
     # Put everything to CPU (works better with NumPy + Matplotlib)
     model.to("cpu")
