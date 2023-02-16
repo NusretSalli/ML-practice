@@ -19,7 +19,8 @@ def train_binary_classification(model: torch.nn.Module,
                         loss_function,
                         optimizer,
                         accuracy_function,
-                        report_interval = 1000):
+                        report_interval = 1000,
+                        report_interval_allow = True):
 
     """
     Trains the ANN given the training data (which is a binary classification) - it will then calculate the loss with the test
@@ -37,6 +38,7 @@ def train_binary_classification(model: torch.nn.Module,
     accuracy_function -> the function that will be used to determine the accuracy
     class_type -> is it a binary- or multiclass training. 
     report_interval -> the interval in which a report will be printed out - default value is 1000
+    report_interval_allow -> If you want the report to be printed out - default value is True
 
     
     Outputs: 
@@ -103,10 +105,15 @@ def train_binary_classification(model: torch.nn.Module,
 
         # print the information.
 
-        if epoch % report_interval == 0:
+        if report_interval_allow:
 
-            print(f"| Loss: {loss}, acc: {acc} | Test loss: {test_loss}, test acc: {test_acc}")
+            if epoch % report_interval == 0:
 
+                print(f"| Loss: {loss}, acc: {acc} | Test loss: {test_loss}, test acc: {test_acc}")
+        
+        else:
+
+            continue
 
 
 
@@ -119,7 +126,8 @@ def train_multi_classification(model: torch.nn.Module,
                         loss_function,
                         optimizer,
                         accuracy_function,
-                        report_interval = 1000):
+                        report_interval = 1000,
+                        report_interval_allow = True):
     
     """
     Trains the ANN given the training data (which is a multiclass classification) - it will then calculate the loss with the test
@@ -137,6 +145,7 @@ def train_multi_classification(model: torch.nn.Module,
     accuracy_function -> the function that will be used to determine the accuracy
     class_type -> is it a binary- or multiclass training. 
     report_interval -> the interval in which a report will be printed out - default value is 1000
+    report_interval_allow -> If you want the report to be printed out - default value is True
 
     
     Outputs: 
@@ -206,6 +215,12 @@ def train_multi_classification(model: torch.nn.Module,
 
         # print the information.
 
-        if epoch % report_interval == 0:
+        if report_interval_allow:
 
-            print(f"| Loss: {loss}, acc: {acc} | Test loss: {test_loss}, test acc: {test_acc}")
+            if epoch % report_interval == 0:
+
+                print(f"| Loss: {loss}, acc: {acc} | Test loss: {test_loss}, test acc: {test_acc}")
+        
+        else:
+
+            continue
