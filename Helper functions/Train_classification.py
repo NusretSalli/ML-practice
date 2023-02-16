@@ -1,6 +1,3 @@
-
-import sklearn
-
 import pandas as pd
 
 import matplotlib.pyplot as plt
@@ -11,30 +8,7 @@ import numpy as np
 
 import tqdm
 
-import seaborn as sns
-
 from torch import nn
-
-from sklearn.model_selection import train_test_split, KFold
-
-import sklearn.linear_model as lm
-
-from scipy.stats import zscore
-
-import scipy.stats as st
-
-from scipy.linalg import svd # Singular value decomposition package
-
-import torchmetrics # used for evaluation metrics
-
-from sklearn.metrics import confusion_matrix, ConfusionMatrixDisplay
-
-from sklearn.neighbors import KNeighborsClassifier
-
-from sklearn.naive_bayes import GaussianNB
-
-from sklearn.linear_model import LogisticRegression
-
 
 def train_binary_classification(model: torch.nn.Module,
                         X_train: torch.Tensor,
